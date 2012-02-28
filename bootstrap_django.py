@@ -3,6 +3,7 @@
 import os
 import random
 import string
+import sys
 
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -59,14 +60,9 @@ def render_settings_file(file_path, context={}, mode=None):
     """
     Render a settings file in place
     """
-    filename = os.path.basename(file_path)
-    path = os.path.dirname(file_path)
-
-    with open(os.path.join(dest_path, path, filename))
-
     rendered = render_to_string(file_path, context)
     with open(file_path, 'w') as f:
-        f.write(rendered_manage)
+        f.write(rendered)
 
     if mode is not None:
         os.chmod(file_path, mode)
@@ -74,6 +70,8 @@ def render_settings_file(file_path, context={}, mode=None):
 
 # Main code
 if __name__ == '__main__':
+
+    project_name = context['project_name']
 
     if not project_name:
         print u'Setup the configuration dict to start. (Hint: go to line 20)'
