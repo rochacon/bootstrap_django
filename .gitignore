@@ -1,0 +1,8 @@
+.DS_Store
+*.pyc
+public/media/*
+tmp/
+localsettings.py
+psd/
+*.pyo
+*.swp
