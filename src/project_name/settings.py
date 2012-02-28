@@ -2,18 +2,18 @@
 import os
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = True
 
 ADMINS = (
-    (u'For Folks', 'dev@forfolks.com.br'),
+    (u'Admin', 'admin@{{ domain }}'),
 )
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.',
         'NAME': '{{ project_name }}',
         'USER': '{{ project_name }}',
         'PASSWORD': '',
@@ -83,7 +83,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '{{ secret }}'
+SECRET_KEY = '{{ secret_key }}'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -119,36 +119,22 @@ INSTALLED_APPS = (
 
 # Logging and sentry configs
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'handlers': {
-        # 'sentry': {
-        #     'level': 'DEBUG',
-        #     'class': 'sentry.client.handlers.SentryHandler',
-        # },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        }
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "class": "django.utils.log.AdminEmailHandler",
+        },
     },
-    'loggers': {
-        # '()': {
-        #     'level': 'WARNING',
-        #     'handlers': ['sentry'],
-        # },
-        # 'sentry.errors': {
-        #     'level': 'DEBUG',
-        #     'handlers': ['console'],
-        #     'propagate': False,
-        # },
+    "loggers": {
+        "django.request": {
+            "handlers": ["mail_admins"],
+            "level": "ERROR",
+            "propagate": True,
+        },
     },
 }
-
-# SENTRY_KEY = ''
-# SENTRY_REMOTE_URL = 'http://sentry.forfolks.com/store/'
-
-# Extra configs go here
-
 
 # Activate core.context_processors.is_production
 from django.conf import global_settings as DEFAULT_SETTINGS

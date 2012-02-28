@@ -24,7 +24,8 @@ context = {
     # The base path of the project, where the bootstrap.py script lives
     'base_path': base_path,
 
-    # The domain to be used in the NGINX configurations
+    # The domain to be used in the NGINX configurations and as the domain for
+    # the the inital Django ADMINS setting
     'domain': 'localhost',
 
     # The project name, this should be a valid Python module name
@@ -78,6 +79,7 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # render settings file
+    context['secret_key'] = generate_secret()
     render_settings_file(os.path.join('src', 'project_name', 'settings.py'), context)
     os.rename(os.path.join('src', 'project_name'),
               os.path.join('src', project_name))

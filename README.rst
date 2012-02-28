@@ -1,4 +1,4 @@
-This is a simple Django project template.
+This is a simple Django project template. This is not intended to be the perfect project setup, but to be used as generic base. Feel free to tweak this as much as you want.
 
 The bootstrap_django.py script will render all the configurations and replace variables with your context data.
 
