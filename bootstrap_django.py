@@ -99,12 +99,16 @@ if __name__ == '__main__':
     render_settings_file(os.path.join('etc', 'uwsgi', 'uwsgi.ini'), context)
 
     # Success!
-    print '''%(project_name)s bootstrapped successfully.
+    print '''
+    %(project_name)s bootstrapped successfully.
+
+    What to do now?!
+
     Delete this script:
-        git rm bootstrap.py
+        git rm bootstrap_django.py
 
-    And set your git upstream remote:
-        git remote set-url origin git@github.com:rochacon/bootstrap_django
+    Set your git upstream remote:
+        git remote set-url origin git@github.com:rochacon/bootstrap_django.git
 
-    Commit the changes and start writing code!
+    Commit and push the changes and start writing some awesomeness!
     ''' % {'project_name': project_name}
