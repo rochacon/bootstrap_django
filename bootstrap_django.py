@@ -107,7 +107,7 @@ if __name__ == '__main__':
     What to do now?!
 
     Delete this script:
-        git rm bootstrap_django.py
+        git rm -f bootstrap_django.py
 
     Set your git upstream remote:
         git remote set-url origin git@github.com:rochacon/bootstrap_django.git
