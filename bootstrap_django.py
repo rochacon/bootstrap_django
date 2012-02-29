@@ -84,6 +84,11 @@ if __name__ == '__main__':
     os.rename(os.path.join('src', 'project_name'),
               os.path.join('src', project_name))
 
+    # render etc/init script
+    render_settings_file(os.path.join('etc', 'init', 'project_name.conf'), context)
+    os.rename(os.path.join('etc', 'init', 'project_name.conf'),
+              os.path.join('etc', 'init', '%s.conf' % project_name))
+
     # render etc/init.d script
     render_settings_file(os.path.join('etc', 'init.d', 'project_name.sh'), context, 0744)
     os.rename(os.path.join('etc', 'init.d', 'project_name.sh'),
